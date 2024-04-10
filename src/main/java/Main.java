@@ -51,6 +51,7 @@ public class Main {
             if(matrizInventario[i][0] == null){
                 matrizInventario[i][0] = nombreProducto;
                 matrizInventario[i][1] = cantidadProducto;
+                System.out.println("Producto agregado correctamente");
                 break;
             }
         }
@@ -58,20 +59,16 @@ public class Main {
 
     public static void venderProducto(String[][] matrizInventario, int posicion, int cantidad) {
 
-        if (matrizInventario[posicion][1] != null) {
+        String stock = matrizInventario[posicion][1];
+        int cantidadActual = Integer.parseInt(stock);
 
-            String stock = matrizInventario[posicion][1];
-            int cantidadActual = Integer.parseInt(stock);
-
-            if (cantidadActual >= cantidad) {
-                matrizInventario[posicion][1] = String.valueOf(cantidadActual - cantidad);
-            } else {
-                System.out.println("No hay suficiente cantidad de producto");
-            }
-
+        if (cantidadActual >= cantidad) {
+            matrizInventario[posicion][1] = String.valueOf(cantidadActual - cantidad);
+            System.out.println("Venta realizada correctamente");
         } else {
-            System.out.println("No hay producto en la posición indicada");
+            System.out.println("No hay suficiente cantidad de producto");
         }
+
     }
 
     public static void mostrarInventario(String[][] matrizInventario) {
