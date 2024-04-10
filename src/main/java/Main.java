@@ -2,13 +2,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static Scanner scanner = new Scanner(System.in);
-
-    public static String[][] inventario = new String[10][2];
-
     public static void main(String[] args) {
         menu();
     }
+
+    public static String[][] inventario = new String[10][2];
 
     public static void menu() {
 
@@ -48,6 +46,7 @@ public class Main {
     }
 
     public static void agregarPoducto(String [][] matrizInventario, String nombreProducto, String cantidadProducto){
+
         for(int i = 0; i < matrizInventario.length; i++){
             if(matrizInventario[i][0] == null){
                 matrizInventario[i][0] = nombreProducto;
@@ -58,20 +57,25 @@ public class Main {
     }
 
     public static void venderProducto(String[][] matrizInventario, int posicion, int cantidad) {
+
         if (matrizInventario[posicion][1] != null) {
+
             String stock = matrizInventario[posicion][1];
             int cantidadActual = Integer.parseInt(stock);
+
             if (cantidadActual >= cantidad) {
                 matrizInventario[posicion][1] = String.valueOf(cantidadActual - cantidad);
             } else {
                 System.out.println("No hay suficiente cantidad de producto");
             }
+
         } else {
             System.out.println("No hay producto en la posición indicada");
         }
     }
 
     public static void mostrarInventario(String[][] matrizInventario) {
+
         for (int i = 0; i < matrizInventario.length; i++) {
             if (matrizInventario[i][0] != null) {
                 System.out.println("Producto: " + matrizInventario[i][0] + " - Cantidad: " + matrizInventario[i][1]);
@@ -80,19 +84,24 @@ public class Main {
     }
 
     public static int buscarProducto(String[][] matrizInventario, String nombreProducto) {
+
         for (int i = 0; i < matrizInventario.length; i++) {
             if (matrizInventario[i][0] != null && matrizInventario[i][0].equals(nombreProducto)) {
                 return i;
             }
         }
+
         return -1;
     }
 
     public static void menuAgregarProducto(){
+
         System.out.println("Ingrese el nombre del producto");
         String nombreProducto = scanner.nextLine();
+
         System.out.println("Ingrese la cantidad del producto");
         String cantidadProducto = scanner.nextLine();
+
         try {
             Integer.parseInt(cantidadProducto);
             agregarPoducto(inventario, nombreProducto, cantidadProducto);
@@ -120,8 +129,11 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.out.println("La cantidad debe ser un numero");
             }
+
         } else {
             System.out.println("El producto no existe");
         }
     }
+    public static Scanner scanner = new Scanner(System.in);
+
 }
